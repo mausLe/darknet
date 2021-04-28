@@ -190,9 +190,15 @@ def batch_detection_example():
     print(detections)
 
 
-def main():
+def main(input_add, weights_add, config_file_add, data_file_add):
+    
     args = parser()
-    check_arguments_errors(args)
+    args.config_file = config_file_add
+    args.input = input_add
+    args.weights = weights_add
+    args.data_file = data_file_add
+
+    # check_arguments_errors(args)
 
     random.seed(3)  # deterministic bbox colors
     network, class_names, class_colors = darknet.load_network(
@@ -222,14 +228,15 @@ def main():
         darknet.print_detections(detections, args.ext_output)
         fps = int(1/(time.time() - prev_time))
         print("FPS: {}".format(fps))
-        if not args.dont_show:
-            cv2.imshow('Inference', image)
-            if cv2.waitKey() & 0xFF == ord('q'):
-                break
+        # if not args.dont_show:
+        #     cv2.imshow('Inference', image)
+        #     if cv2.waitKey() & 0xFF == ord('q'):
+        #         break
         index += 1
 
 
 if __name__ == "__main__":
     # unconmment next line for an example of batch processing
     # batch_detection_example()
-    main()
+    # main()
+    main("/content/test/prop", "/content/darknet/yolov4.weights", "/content/darknet/cfg/yolov4.cfg", "/content/darknet/cfg/coco.data")
