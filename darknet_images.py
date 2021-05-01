@@ -6,7 +6,6 @@ import darknet
 import time
 import cv2
 import numpy as np
-import darknet
 
 
 def parser():
@@ -190,7 +189,7 @@ def batch_detection_example():
     print(detections)
 
 
-def main(input_add, weights_add, config_file_add, data_file_add):
+def detect(input_add, weights_add, config_file_add, data_file_add):
     
     args = parser()
     args.config_file = config_file_add
@@ -239,4 +238,4 @@ if __name__ == "__main__":
     # unconmment next line for an example of batch processing
     # batch_detection_example()
     # main()
-    main("/content/test/prop", "/content/darknet/yolov4.weights", "/content/darknet/cfg/yolov4.cfg", "/content/darknet/cfg/coco.data")
+    detect("/content/test/prop", "/content/darknet/yolov4.weights", "/content/darknet/cfg/yolov4.cfg", "/content/darknet/cfg/coco.data")
